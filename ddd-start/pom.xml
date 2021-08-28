@@ -50,11 +50,19 @@
     </dependencies>
 
     <build>
-        <finalName>ddd-services</finalName>
+        <finalName>ddd-start</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!-- 解压fat jar到target/${project-name}目录 -->
             <plugin>
@@ -66,7 +74,7 @@
                         <configuration>
                             <target>
                                 <unzip src="${project.build.directory}/${project.build.finalName}.${project.packaging}"
-                                       dest="${project.build.directory}/ddd-services"/>
+                                       dest="${project.build.directory}/${project.build.finalName}"/>
                             </target>
                         </configuration>
                         <goals>
