@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.ddd.infrastructure.persistence.dal.mybatisplus.mybatismapper.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chen.ddd.infrastructure.persistence.dal.mybatisplus.dataobject.OrderDO">
+        <id column="id" property="id"/>
+        <result column="buyer_id" property="buyerId"/>
+        <result column="total_price_currency" property="totalPriceCurrency"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="status" property="status"/>
+        <result column="shipping_address" property="shippingAddress"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result column="logistics_tracking_no" property="logisticsTrackingNo"/>
+        <result column="logistics_status" property="logisticsStatus"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+    `id`, 
+    `buyer_id`, 
+    `total_price_currency`, 
+    `total_price`, 
+    `status`, 
+    `shipping_address`, 
+    `logistics_tracking_no`, 
+    `logistics_status`, 
+    `created_at`, 
+    `updated_at`
+    </sql>
+
+</mapper>

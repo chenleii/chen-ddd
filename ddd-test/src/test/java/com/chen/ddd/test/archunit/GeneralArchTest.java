@@ -4,18 +4,13 @@ import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaMethod;
 import com.tngtech.archunit.core.domain.JavaModifier;
 import com.tngtech.archunit.junit.AnalyzeClasses;
-import com.tngtech.archunit.junit.ArchIgnore;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchCondition;
 import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
-import org.jddd.core.annotation.AggregateRoot;
-import org.jddd.core.annotation.Entity;
-import org.jddd.core.annotation.Service;
-import org.jddd.core.annotation.ValueObject;
+import org.jddd.core.annotation.*;
 
-import static com.tngtech.archunit.lang.conditions.ArchConditions.*;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
@@ -38,6 +33,10 @@ public class GeneralArchTest {
     @ArchTest
     public static final ArchRule domain_should_not_access_port =
             noClasses().that().resideInAPackage("..domain..")
+                    .and()
+                    .areNotAnnotatedWith(Factory.class)
+                    .and()
+                    .areNotAnnotatedWith(Service.class)
                     .should().dependOnClassesThat().resideInAPackage("..port..");
 
     @ArchTest
@@ -63,7 +62,7 @@ public class GeneralArchTest {
                         if (javaMethod.getName().startsWith("set") &&
                                 javaMethod.getModifiers().contains(JavaModifier.PUBLIC)) {
                             String message = String.format(
-                                    "Public method %s is not allowed begin with setter", javaMethod.getName());
+                                    "Public method %s is not allowed begin with setter" , javaMethod.getName());
                             events.add(SimpleConditionEvent.violated(item, message));
                         }
                     }

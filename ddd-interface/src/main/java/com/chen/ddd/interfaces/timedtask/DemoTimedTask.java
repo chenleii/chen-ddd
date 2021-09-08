@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.inject.Named;
 
 /**
- * 测试定时任务
+ * 示例定时任务
  *
  * @author cl
  * @version 1.0

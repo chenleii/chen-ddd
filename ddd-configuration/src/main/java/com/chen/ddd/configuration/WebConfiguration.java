@@ -1,5 +1,6 @@
 package com.chen.ddd.configuration;
 
+import com.chen.ddd.infrastructure.json.JacksonJsonSerializer;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
@@ -10,7 +11,9 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.zalando.jackson.datatype.money.MoneyModule;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
@@ -45,7 +48,7 @@ public class WebConfiguration implements WebMvcConfigurer {
                 if (StringUtils.isBlank(s)) {
                     return null;
                 }
-                return Instant.ofEpochSecond(Long.parseLong(s));
+                return Instant.ofEpochMilli(Long.parseLong(s));
             }
         });
     }
@@ -53,13 +56,8 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
         return (builder) -> {
-            // 时间转纳秒（小数点前秒，小数点后纳秒）
-            builder.featuresToEnable(WRITE_DATES_AS_TIMESTAMPS);
-            // 时间转毫秒
-            // builder.featuresToDisable(WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS);
-            // builder.featuresToDisable(READ_DATE_TIMESTAMPS_AS_NANOSECONDS);
-
-            builder.serializerByType(Long.class, new ToStringSerializer());
+            // 统一
+            builder.configure(JacksonJsonSerializer.getObjectMapper());
         };
     }
 }

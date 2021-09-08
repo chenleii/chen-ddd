@@ -210,6 +210,23 @@ public interface SupperMapper<T> extends BaseMapper<T> {
     }
 
     /**
+     * 批量插入
+     * <p>
+     * 冲突更新
+     *
+     * @param entityList 实体列表
+     * @param batchSize  插入批次数量
+     * @return 受影响行数
+     */
+    @Transactional(rollbackFor = Exception.class)
+    default int insertOnDuplicateKeyUpdateBatch(List<T> entityList, int batchSize) {
+        Class<?> mapperClass = Mappers.getProxyMapperClass(this.getClass());
+        Class<T> entryClass = Mappers.getMapperModelClass(mapperClass);
+
+        return Mappers.insertOnDuplicateKeyUpdateBatchReturnCount(mapperClass, entryClass, entityList, batchSize);
+    }
+
+    /**
      * 批量修改
      *
      * @param entityList 实体列表
@@ -245,6 +262,17 @@ public interface SupperMapper<T> extends BaseMapper<T> {
     }
 
     /**
+     * 批量插入
+     *
+     * @param entityList 实体列表
+     * @return 受影响行数
+     */
+    @Transactional(rollbackFor = Exception.class)
+    default int insertOnDuplicateKeyUpdateBatch(List<T> entityList) {
+        return insertOnDuplicateKeyUpdateBatch(entityList, DEFAULT_BATCH_SIZE);
+    }
+
+    /**
      * 批量修改
      *
      * @param entityList 实体列表
@@ -264,4 +292,14 @@ public interface SupperMapper<T> extends BaseMapper<T> {
      * @return 行数
      */
     int insertIgnore(T entity);
+
+    /**
+     * 插入一条记录
+     * <p>
+     * 冲突更新
+     *
+     * @param entity entity
+     * @return 行数
+     */
+    int insertOnDuplicateKeyUpdate(T entity);
 }

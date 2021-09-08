@@ -17,6 +17,8 @@
 
         <jddd-core.version>0.1.0</jddd-core.version>
         <javax.inject.version>1</javax.inject.version>
+        <moneta-core.version>1.4.2</moneta-core.version>
+        <jackson-datatype-money.version>1.2.2</jackson-datatype-money.version>
 
         <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
         <mybatis-plus.version>3.4.3.1</mybatis-plus.version>
@@ -92,6 +94,11 @@
             </dependency>
             <dependency>
                 <groupId>com.chen</groupId>
+                <artifactId>ddd-core-order</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.chen</groupId>
                 <artifactId>ddd-infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -130,6 +137,16 @@
                 <groupId>org.jddd</groupId>
                 <artifactId>jddd-core</artifactId>
                 <version>${jddd-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.javamoney.moneta</groupId>
+                <artifactId>moneta-core</artifactId>
+                <version>${moneta-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zalando</groupId>
+                <artifactId>jackson-datatype-money</artifactId>
+                <version>${jackson-datatype-money.version}</version>
             </dependency>
 
             <dependency>

@@ -1,10 +1,11 @@
 package com.chen.ddd.configuration;
 
-import com.chen.ddd.infrastructure.persistence.dal.mybatisplus.sqlinjector.ChenSqlInjector;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.chen.ddd.infrastructure.json.JacksonJsonSerializer;
+import com.chen.ddd.infrastructure.persistence.dal.mybatisplus.sqlinjector.CustomSqlInjector;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mybatis.spring.annotation.MapperScan;
@@ -12,6 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.zalando.jackson.datatype.money.MoneyModule;
 
 /**
  * @author cl
@@ -38,10 +40,7 @@ public class MyBatisPlusConfiguration {
     @Bean
     public CommandLineRunner mybatisPlusJacksonTypeHandlerCommandLineRunner() {
         return (args) -> {
-            ObjectMapper objectMapper = new ObjectMapper();
-            // 忽略未知字段
-            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            JacksonTypeHandler.setObjectMapper(objectMapper);
+            JacksonTypeHandler.setObjectMapper(JacksonJsonSerializer.getObjectMapper());
         };
     }
 
@@ -50,8 +49,8 @@ public class MyBatisPlusConfiguration {
      * 自定义sql注入器
      */
     @Bean
-    public ChenSqlInjector dddSqlInjector() {
-        return new ChenSqlInjector();
+    public CustomSqlInjector dddSqlInjector() {
+        return new CustomSqlInjector();
     }
 
 

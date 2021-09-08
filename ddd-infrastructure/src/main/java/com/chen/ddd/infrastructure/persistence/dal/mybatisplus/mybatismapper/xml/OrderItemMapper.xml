@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.ddd.infrastructure.persistence.dal.mybatisplus.mybatismapper.OrderItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.chen.ddd.infrastructure.persistence.dal.mybatisplus.dataobject.OrderItemDO">
+        <id column="id" property="id"/>
+        <result column="order_id" property="orderId"/>
+        <result column="buyer_id" property="buyerId"/>
+        <result column="product_id" property="productId"/>
+        <result column="product_title" property="productTitle"/>
+        <result column="quantity" property="quantity"/>
+        <result column="unit_price_currency" property="unitPriceCurrency"/>
+        <result column="unit_price" property="unitPrice"/>
+        <result column="product_snapshot" property="productSnapshot"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+    `id`, 
+    `order_id`, 
+    `buyer_id`, 
+    `product_id`, 
+    `product_title`, 
+    `quantity`, 
+    `unit_price_currency`, 
+    `unit_price`, 
+    `product_snapshot`, 
+    `created_at`, 
+    `updated_at`
+    </sql>
+
+</mapper>

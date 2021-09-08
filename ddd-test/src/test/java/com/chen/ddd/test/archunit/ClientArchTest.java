@@ -11,6 +11,5 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 @AnalyzeClasses(packages = "com.chen.ddd.client")
 public class ClientArchTest {
 
-    // service都要返回保证类型对象
 
 }

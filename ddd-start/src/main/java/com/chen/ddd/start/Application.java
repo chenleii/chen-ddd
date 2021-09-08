@@ -1,5 +1,6 @@
 package com.chen.ddd.start;
 
+import com.chen.ddd.configuration.test.redis.EnableEmbeddedRedis;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -11,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @author chengxu
  */
 @EnableAsync
-@EnableCaching
+@EnableEmbeddedRedis
 @SpringBootApplication(
         scanBasePackages = {"com.chen.ddd"}
 )

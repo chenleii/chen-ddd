@@ -1,19 +1,21 @@
 package com.chen.ddd.test;
 
+import com.chen.ddd.configuration.test.redis.EnableEmbeddedRedis;
 import com.chen.ddd.core.common.mq.Message;
 import com.chen.ddd.core.common.mq.MessageQueuePublisher;
-import com.chen.ddd.test.configuration.redis.EnableEmbeddedRedis;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * @author chen
  * @since 2021/3/2 21:33.
  */
+@EnableAsync
 @EnableEmbeddedRedis
 @SpringBootApplication(
         scanBasePackages = {

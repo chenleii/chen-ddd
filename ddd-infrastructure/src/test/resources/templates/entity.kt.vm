@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @since ${date}
  */
 #if(${table.convert})
-@TableName("${table.name}")
+@TableName(value = "`${table.name}`", autoResultMap = true)
 #end
 #if(${swagger2})
 @ApiModel(value="${entity}对象", description="$!{table.comment}")

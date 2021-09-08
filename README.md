@@ -1,5 +1,7 @@
 # DDD模板项目
 
+以订单系统为背景的DDD示例项目
+
 ## 应用启动说明
 * 项目启动： 执行 ```com.chen.ddd.start.Application.java```
 * 访问API: http://127.0.0.1:7001/doc.html
@@ -9,10 +11,8 @@
 DDD + CQRS + 事件总线
 
 ## 包结构说明
-```
-+-ddd-common: 公共层，存放业务无关的技术框架。
-|
-+-ddd-core: 核心业务业务组件层。按照业务域划分模块。
+````
++-ddd-core: 核心业务组件层。按照业务域划分模块。
 |   +-ddd-core-common：公共域（共享内核）
 |       +-cqrs：cqrs相关公共接口
 |       +-eventbus：事件总线

@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 
@@ -27,7 +28,7 @@ import javax.sql.DataSource;
 // @ImportAutoConfiguration(classes = DataSourceAutoConfiguration.class)
 public class GeneratorMybatisPlusCode {
     private static final String parentPackageName = SupperMapper.class.getPackage().getName();
-    private static final String generatorMybatisPlusCodeDir = System.getProperty("user.dir") + "/target/main/java";
+    private static final String generatorMybatisPlusCodeDir = System.getProperty("user.dir") + "/src/main/java";
 
     private static final String[] tableNames = {};
 
@@ -58,7 +59,7 @@ public class GeneratorMybatisPlusCode {
                 .addInclude(tableNames)
                 .enableCapitalMode()
                 .enableSkipView()
-                .addTablePrefix("ddd")
+                .addTablePrefix("")
                 .addFieldPrefix("")
 
                 .mapperBuilder()
@@ -74,7 +75,7 @@ public class GeneratorMybatisPlusCode {
                 .enableLombok()
                 .enableTableFieldAnnotation()
                 // .enableRemoveIsPrefix()
-                .enableActiveRecord()
+                // .enableActiveRecord()
                 .idType(IdType.INPUT)
                 .versionColumnName("version")
                 .versionPropertyName("version")
@@ -99,7 +100,7 @@ public class GeneratorMybatisPlusCode {
 
         GlobalConfig globalConfig = new GlobalConfig.Builder()
                 .outputDir(generatorMybatisPlusCodeDir)
-                .openDir(true)
+                .openDir(false)
                 .fileOverride()
                 .author("chen")
                 .enableSwagger()
