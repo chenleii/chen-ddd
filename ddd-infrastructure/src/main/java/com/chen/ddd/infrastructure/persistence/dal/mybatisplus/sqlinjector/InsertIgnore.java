@@ -23,6 +23,10 @@ public class InsertIgnore extends Insert {
     public static final String METHOD_NAME = "insertIgnore";
     public static final String SQL = "<script>\nINSERT IGNORE INTO %s %s VALUES %s\n</script>";
 
+    public InsertIgnore() {
+        super(METHOD_NAME);
+    }
+
     @Override
     public MappedStatement injectMappedStatement(Class<?> mapperClass, Class<?> modelClass, TableInfo tableInfo) {
         KeyGenerator keyGenerator = new NoKeyGenerator();
@@ -52,8 +56,4 @@ public class InsertIgnore extends Insert {
         return this.addInsertMappedStatement(mapperClass, modelClass, METHOD_NAME, sqlSource, keyGenerator, keyProperty, keyColumn);
     }
 
-    @Override
-    public String getMethod(SqlMethod sqlMethod) {
-        return METHOD_NAME;
-    }
 }

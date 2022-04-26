@@ -100,8 +100,7 @@ public class GeneratorMybatisPlusCode {
 
         GlobalConfig globalConfig = new GlobalConfig.Builder()
                 .outputDir(generatorMybatisPlusCodeDir)
-                .openDir(false)
-                .fileOverride()
+                .disableOpenDir()
                 .author("chen")
                 .enableSwagger()
                 .dateType(DateType.TIME_PACK)

@@ -3,6 +3,7 @@ package com.chen.ddd.interfaces.http.dto.app.inputdto;
 import com.chen.ddd.interfaces.http.dto.DTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,6 +19,7 @@ import java.util.List;
 @Setter
 @ToString
 @ApiModel("订单项输入数据")
+@Schema(name = "订单项输入数据")
 public class PlaceOrderItemInputDTO implements DTO {
 
     private static final long serialVersionUID = 1L;
@@ -26,10 +28,12 @@ public class PlaceOrderItemInputDTO implements DTO {
      * 商品ID
      */
     @ApiModelProperty("商品ID")
+    @Schema(name = "商品ID")
     private Long productId;
     /**
      * 扣减数量
      */
     @ApiModelProperty("扣减数量")
+    @Schema(name = "扣减数量")
     private Integer quantity;
 }

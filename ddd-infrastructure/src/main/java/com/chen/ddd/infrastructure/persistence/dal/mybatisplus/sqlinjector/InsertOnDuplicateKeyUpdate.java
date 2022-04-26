@@ -28,6 +28,10 @@ public class InsertOnDuplicateKeyUpdate extends Update {
     public static final String METHOD_NAME = "insertOnDuplicateKeyUpdate";
     public static final String SQL = "<script>\nINSERT INTO %s %s VALUES %s ON DUPLICATE KEY UPDATE %s \n</script>";
 
+    public InsertOnDuplicateKeyUpdate() {
+        super(METHOD_NAME);
+    }
+
     @Override
     public MappedStatement injectMappedStatement(Class<?> mapperClass, Class<?> modelClass, TableInfo tableInfo) {
         KeyGenerator keyGenerator = new NoKeyGenerator();
@@ -57,11 +61,6 @@ public class InsertOnDuplicateKeyUpdate extends Update {
         String sql = String.format(SQL, tableInfo.getTableName(), columnScript, valuesScript, onDuplicateKeyUpdateScript);
         SqlSource sqlSource = languageDriver.createSqlSource(configuration, sql, modelClass);
         return this.addInsertMappedStatement(mapperClass, modelClass, METHOD_NAME, sqlSource, keyGenerator, keyProperty, keyColumn);
-    }
-
-    @Override
-    public String getMethod(SqlMethod sqlMethod) {
-        return METHOD_NAME;
     }
 
 

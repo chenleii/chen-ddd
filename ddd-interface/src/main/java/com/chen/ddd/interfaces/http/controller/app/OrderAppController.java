@@ -17,6 +17,9 @@ import com.chen.ddd.interfaces.http.dto.dtomapper.OrderDTOMapper;
 import com.chen.ddd.interfaces.http.handle.ResultWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +32,7 @@ import java.util.stream.Collectors;
  * @since 2021/9/8 15:24
  */
 @Api(tags = "订单相关的应用接口")
+@Tag(name = "订单相关的应用接口")
 @Slf4j
 @RestController
 @RequestMapping("/app/order")
@@ -41,6 +45,7 @@ public class OrderAppController extends AbstractAppController {
     private OrderQueryService orderQueryService;
 
     @ApiOperation("买家下单")
+    @Operation(summary = "买家下单")
     @PostMapping("/placeOrder")
     @ResultWrapper
     public Long placeOrder(@RequestBody PlaceOrderInputDTO dto) {
@@ -77,6 +82,7 @@ public class OrderAppController extends AbstractAppController {
     }
 
     @ApiOperation("买家支付订单")
+    @Operation(summary = "买家支付订单")
     @PostMapping("/pay")
     @ResultWrapper
     public void pay(@RequestBody PayOrderInputDTO dto) {
@@ -86,6 +92,7 @@ public class OrderAppController extends AbstractAppController {
     }
 
     @ApiOperation("订单查询")
+    @Operation(summary = "订单查询")
     @GetMapping("/query")
     @ResultWrapper
     public OrderOutputDTO query(Long orderId) {

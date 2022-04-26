@@ -3,6 +3,7 @@ package com.chen.ddd.interfaces.http.dto.app;
 import com.chen.ddd.interfaces.http.dto.DTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,6 +19,7 @@ import javax.money.MonetaryAmount;
 @Setter
 @ToString
 @ApiModel("订单商品快照")
+@Schema(name = "订单商品快照")
 public class ProductSnapshotDTO implements DTO {
 
     private static final long serialVersionUID = 1L;
@@ -26,23 +28,27 @@ public class ProductSnapshotDTO implements DTO {
      * 商品ID
      */
     @ApiModelProperty("商品ID")
+    @Schema(name = "商品ID")
     private Long productId;
 
     /**
      * 标题
      */
     @ApiModelProperty("标题")
+    @Schema(name = "标题")
     private String title;
 
     /**
      * 明细
      */
     @ApiModelProperty("明细")
+    @Schema(name = "明细")
     private String details;
 
     /**
      * 单价
      */
     @ApiModelProperty("单价")
+    @Schema(name = "单价")
     private MonetaryAmount unitPrice;
 }
